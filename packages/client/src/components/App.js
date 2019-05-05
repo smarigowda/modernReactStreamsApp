@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Route, Link } from 'react-router-dom';
 
 const PageOne = () => {
     return (
@@ -34,11 +34,11 @@ const Home = () => {
 export default () => {
     return (
         <div>
-            <BrowserRouter>
+            <HashRouter>
                 <Route path="/" exact={true} component={Home} />
                 <Route path="/page1" component={PageOne} />
                 <Route path="/page2" component={PageTwo} />
-            </BrowserRouter>
+            </HashRouter>
         </div>
     );
 };
