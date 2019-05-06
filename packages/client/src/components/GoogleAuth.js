@@ -1,17 +1,20 @@
 import React, { useEffect } from 'react';
 
+const { REACT_APP_CLIENT_ID } = process.env;
+console.log(REACT_APP_CLIENT_ID);
+console.log(process.env);
+
 export const GoogleAuth = () => {
     useEffect(() => {
-        console.log(window.gapi);
-        async function loadLibraries () {
-            console.log('waiting for 10 sec...');
-            await new Promise((resolve, reject) => {
-                setTimeout(() => {
-                    resolve();
-                }, 10000);
+        function loadLibraries () {
+            window.gapi.load('client:auth2', () => {
+                console.log(REACT_APP_CLIENT_ID);
+                window.gapi.client.init({
+                    clientId: REACT_APP_CLIENT_ID,
+                    scope: 'email'
+                });
             });
-            console.log('loading libraries...');
-            await window.gapi.load('client:auth2');
+            console.log(window.gapi);
         }
         loadLibraries();
     }, [])
