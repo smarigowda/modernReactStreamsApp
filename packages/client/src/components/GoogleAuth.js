@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-
-import styles from './css/Header.module.scss';
+import styles from './css/GoogleAuth.module.scss';
 
 const { REACT_APP_CLIENT_ID } = process.env;
 
@@ -42,6 +41,7 @@ export const GoogleAuth = () => {
     }
     return (
         <button
+            className={styles.signinButton}
             onClick={onClickHandler}>
             {isSignedIn ? 'SIGN-OUT' : 'SIGN-IN' }
         </button>

@@ -1,0 +1,9 @@
+.signinButton {
+    font-size: 1.2rem;
+    background-color: red;
+    color: white;
+    border: none;
+    &:focus {
+        outline: none;
+    }
+}

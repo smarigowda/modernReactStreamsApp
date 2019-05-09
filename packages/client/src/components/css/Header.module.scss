@@ -14,13 +14,4 @@
         text-transform: uppercase;
         color: black;
     }
-    button {
-        font-size: 1.2rem;
-        background-color: aquamarine;
-        color: blue;
-        border: none;
-        &:focus {
-            outline: none;
-        }
-    }
 }
