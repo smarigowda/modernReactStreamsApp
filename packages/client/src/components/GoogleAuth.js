@@ -22,11 +22,6 @@ export const GoogleAuth = () => {
                     // console.log(auth.isSignedIn.get());
                     setIsSignedIn(auth.isSignedIn.get());
                 });
-                try {
-                    // await auth.signIn();
-                } catch(e) {
-                    console.log('user closed popup');
-                }
             });
         }
         loadLibraries();
