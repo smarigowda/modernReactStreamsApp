@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
 import styles from './css/GoogleAuth.module.scss';
 
 const { REACT_APP_CLIENT_ID } = process.env;
@@ -16,10 +15,7 @@ export const GoogleAuth = () => {
                 });
                 const auth = window.gapi.auth2.getAuthInstance();
                 setAuth(auth);
-                // console.log(auth);
                 auth.isSignedIn.listen(() => {
-                    // console.log('inside listen...');
-                    // console.log(auth.isSignedIn.get());
                     setIsSignedIn(auth.isSignedIn.get());
                 });
             });
