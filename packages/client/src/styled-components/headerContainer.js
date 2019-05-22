@@ -7,13 +7,4 @@ export const HeaderContainer = styled.div`
     align-content: center;
     margin-top: 2rem;
     border-bottom: 1.5px solid lightgray;
-    > a {
-        padding: 1rem;
-        justify-self: center;
-        align-self: center;
-        text-decoration: none;
-        font-size: 1.6rem;
-        text-transform: uppercase;
-        color: black;
-    }
 `;

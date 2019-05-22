@@ -3,8 +3,9 @@ import styled from 'styled-components'
 export const Button = styled.button`
     font-size: 1.5rem;
     background-color: white;
-    color: palevioletred;
+    color: black;
     border: none;
+    cursor: pointer;
     &:focus {
         outline: none;
     }
