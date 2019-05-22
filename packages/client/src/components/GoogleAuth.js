@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './css/GoogleAuth.module.scss';
+import { Button } from '../styled-components/button';
 
 const { REACT_APP_CLIENT_ID } = process.env;
 
@@ -31,10 +31,9 @@ export const GoogleAuth = () => {
         }
     }
     return (
-        <button
-            className={styles.signinButton}
+        <Button
             onClick={onClickHandler}>
-            {isSignedIn ? 'SIGN-OUT' : 'SIGN-IN' }
-        </button>
+            { isSignedIn ? 'SIGN-OUT' : 'SIGN-IN' }
+        </Button>
     )
 };
