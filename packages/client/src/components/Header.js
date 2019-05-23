@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { GoogleAuth } from './GoogleAuth';
-import { HeaderContainer } from '../styled-components/headerContainer';
-import Link from '../styled-components/styledLink';
+import { HeaderContainer } from '../styled/headerContainer';
+import Link from '../styled/Link';
 
 export const Header = () => {
     return (
