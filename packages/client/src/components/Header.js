@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { GoogleAuth } from './GoogleAuth';
+import GoogleAuth from './GoogleAuth';
 import { HeaderContainer } from '../styled/headerContainer';
 import Link from '../styled/Link';
 

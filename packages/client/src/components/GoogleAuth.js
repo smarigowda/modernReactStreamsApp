@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Button } from "../styled/button";
+import { connect } from "react-redux";
+import { signIn, signOut } from "../actions";
 
 const { REACT_APP_CLIENT_ID } = process.env;
 
-export const GoogleAuth = () => {
+const GoogleAuth = ({ signIn, signOut }) => {
   const [isSignedIn, setIsSignedIn] = useState(null);
   const [auth, setAuth] = useState({});
   useEffect(() => {
@@ -22,19 +24,19 @@ export const GoogleAuth = () => {
         console.log(
           `setting isSignedIn to ${auth.isSignedIn.get()} [inside useEffect]`
         );
-        onAuthChange(auth);
-        auth.isSignedIn.listen(() => {
-          console.log(
-            `setting isSignedIn to ${auth.isSignedIn.get()} [inside listen of useEffect]`
-          );
-          onAuthChange(auth);
-        });
+        onAuthChange(auth.isSignedIn.get());
+        auth.isSignedIn.listen(onAuthChange);
       });
     }
     loadLibraries();
   }, []);
-  const onAuthChange = auth => {
-    setIsSignedIn(auth.isSignedIn.get()); // renders the component immediately after this call
+  const onAuthChange = isSignedIn => {
+    // setIsSignedIn(auth.isSignedIn.get()); // renders the component immediately after this call
+    if(isSignedIn) {
+      signIn();
+    } else {
+      signOut();
+    }
   };
   const onClickHandler = async () => {
     console.log("button clicked....");
@@ -60,3 +62,15 @@ export const GoogleAuth = () => {
   };
   return renderLoginButton();
 };
+
+const mapDispatchToProps = dispatch => {
+  return {
+    signIn: () => dispatch(signIn()),
+    signOut: () => dispatch(signOut())
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(GoogleAuth);
