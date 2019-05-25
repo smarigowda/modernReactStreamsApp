@@ -19,20 +19,23 @@ const GoogleAuth = ({ signIn, signOut, isSignedIn }) => {
         console.log("gapi client initiated... [useEffect]");
         const auth = window.gapi.auth2.getAuthInstance();
         console.log("setting auth... [useEffect]");
+        console.log(auth);
         setAuth(auth); // renders the component immediately after this call
         console.log(
           `setting isSignedIn to ${auth.isSignedIn.get()} [inside useEffect]`
         );
-        onAuthChange(auth.isSignedIn.get());
-        auth.isSignedIn.listen(onAuthChange);
+        onAuthChange(auth.isSignedIn.get(), auth);
+        auth.isSignedIn.listen(isSignedIn => onAuthChange(isSignedIn, auth));
       });
     }
     loadLibraries();
   }, []);
 
-  const onAuthChange = isSignedIn => {
+  const onAuthChange = (isSignedIn, auth) => {
+    console.log(`isSignedIn = ${isSignedIn} [onAuthChange]`)
     if (isSignedIn) {
-      signIn();
+      console.log(auth);
+      signIn(auth.currentUser.get().getId());
     } else {
       signOut();
     }
@@ -70,7 +73,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
   return {
-    signIn: () => dispatch(signIn()),
+    signIn: userId => dispatch(signIn(userId)),
     signOut: () => dispatch(signOut())
   };
 };
