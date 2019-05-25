@@ -5,8 +5,7 @@ import { signIn, signOut } from "../actions";
 
 const { REACT_APP_CLIENT_ID } = process.env;
 
-const GoogleAuth = ({ signIn, signOut }) => {
-  const [isSignedIn, setIsSignedIn] = useState(null);
+const GoogleAuth = ({ signIn, signOut, isSignedIn }) => {
   const [auth, setAuth] = useState({});
   useEffect(() => {
     function loadLibraries() {
@@ -30,24 +29,25 @@ const GoogleAuth = ({ signIn, signOut }) => {
     }
     loadLibraries();
   }, []);
+
   const onAuthChange = isSignedIn => {
-    // setIsSignedIn(auth.isSignedIn.get()); // renders the component immediately after this call
-    if(isSignedIn) {
+    if (isSignedIn) {
       signIn();
     } else {
       signOut();
     }
   };
+
   const onClickHandler = async () => {
     console.log("button clicked....");
-    if (auth.isSignedIn.get()) {
+    if (isSignedIn) {
       await auth.signOut();
     } else {
       await auth.signIn();
     }
   };
   const renderLoginButton = () => {
-    console.log("rendering login Button [renderLoginButton]");
+    console.log(`rendering login Button, isSignedIn = ${isSignedIn} [renderLoginButton]`);
     let button;
     let text;
     if (isSignedIn === true) {
@@ -55,7 +55,7 @@ const GoogleAuth = ({ signIn, signOut }) => {
     } else if (isSignedIn === false) {
       text = "Sign In With Google";
     } else if (isSignedIn === null) {
-      text = "...";
+      text = "Sign Out";
     }
     button = <Button onClick={onClickHandler}>{text}</Button>;
     return button;
@@ -63,6 +63,11 @@ const GoogleAuth = ({ signIn, signOut }) => {
   return renderLoginButton();
 };
 
+const mapStateToProps = state => {
+  return {
+    isSignedIn: state.auth.isSignedIn
+  };
+};
 const mapDispatchToProps = dispatch => {
   return {
     signIn: () => dispatch(signIn()),
@@ -71,6 +76,6 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(GoogleAuth);
