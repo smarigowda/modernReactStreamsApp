@@ -6,5 +6,6 @@ export const HeaderContainer = styled.div`
     grid-gap: 1rem;
     align-content: center;
     margin-top: 2rem;
+    margin-bottom: 1rem;
     border-bottom: 1.5px solid lightgray;
 `;
