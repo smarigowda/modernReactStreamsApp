@@ -9,12 +9,13 @@ const Component = props => {
   console.log(props);
   const renderInput = formProps => {
     console.log("formProps", formProps);
+    const { onChange, value, name } = formProps.input;
     return (
       <div>
-        <Label>{formProps.input.name}:</Label>
+        <Label>{name}:</Label>
         <Input
-          onChange={formProps.input.onChange}
-          value={formProps.input.value}
+          onChange={onChange}
+          value={value}
         />
       </div>
     );
