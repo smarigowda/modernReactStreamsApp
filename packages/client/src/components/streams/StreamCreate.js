@@ -6,7 +6,7 @@ import { Form } from "../../styled/form";
 import { Label } from "../../styled/label";
 
 const Component = props => {
-  console.log(props);
+  console.log('props', props);
   const renderInput = ({ input, label }) => {
     console.log("formProps.input", input);
     return (
@@ -17,10 +17,14 @@ const Component = props => {
     );
   };
   const memoizedRenderInput = useCallback(renderInput, []);
+  const onSubmit = values => {
+    console.log('valuse', values);
+  }
   return (
-    <Form>
+    <Form onSubmit={props.handleSubmit(onSubmit)}>
       <Field name="title" component={memoizedRenderInput} label="Enter Title:"/>
       <Field name="description" component={memoizedRenderInput} label="Enter Description:"/>
+      <button>Submit</button>
     </Form>
   );
 };
