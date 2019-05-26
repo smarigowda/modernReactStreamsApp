@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 
 import { Field, reduxForm } from "redux-form";
 import { Input } from "../../styled/input";
@@ -7,23 +7,20 @@ import { Label } from "../../styled/label";
 
 const Component = props => {
   console.log(props);
-  const renderInput = formProps => {
-    console.log("formProps", formProps);
-    const { onChange, value, name } = formProps.input;
+  const renderInput = ({ input }) => {
+    console.log("formProps.input", input);
     return (
       <div>
-        <Label>{name}:</Label>
-        <Input
-          onChange={onChange}
-          value={value}
-        />
+        <Label>{input.name}:</Label>
+        <Input {...input} />
       </div>
     );
   };
+  const memoizedRenderInput = useCallback(renderInput, []);
   return (
     <Form>
-      <Field name="title" component={renderInput} />
-      <Field name="description" component={renderInput} />
+      <Field name="title" component={memoizedRenderInput} />
+      <Field name="description" component={memoizedRenderInput} />
     </Form>
   );
 };
