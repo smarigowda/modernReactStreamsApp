@@ -7,11 +7,11 @@ import { Label } from "../../styled/label";
 
 const Component = props => {
   console.log(props);
-  const renderInput = ({ input }) => {
+  const renderInput = ({ input, label }) => {
     console.log("formProps.input", input);
     return (
       <div>
-        <Label>{input.name}:</Label>
+        <Label>{label}</Label>
         <Input {...input} />
       </div>
     );
@@ -19,8 +19,8 @@ const Component = props => {
   const memoizedRenderInput = useCallback(renderInput, []);
   return (
     <Form>
-      <Field name="title" component={memoizedRenderInput} />
-      <Field name="description" component={memoizedRenderInput} />
+      <Field name="title" component={memoizedRenderInput} label="Enter Title:"/>
+      <Field name="description" component={memoizedRenderInput} label="Enter Description:"/>
     </Form>
   );
 };
