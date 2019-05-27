@@ -16,7 +16,7 @@ const Component = props => {
       <div>
         <Label error={error}>{label}</Label>
         <Input {...input} />
-        {meta.touched && meta.error ? <P>{meta.error}</P> : ""}
+        {/* {error ? <P>{meta.error}</P> : ""} */}
       </div>
     );
   };
@@ -29,12 +29,12 @@ const Component = props => {
       <Field
         name="title"
         component={memoizedRenderInput}
-        label="Enter Title:"
+        label="Title:"
       />
       <Field
         name="description"
         component={memoizedRenderInput}
-        label="Enter Description:"
+        label="Description:"
       />
       <button>Submit</button>
     </Form>
