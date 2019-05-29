@@ -12,6 +12,9 @@ const Component = props => {
     console.log("formProps.input", input);
     console.log("meta", meta);
     const error = meta.touched && meta.error ? true : false;
+    if(error) {
+      label = label + ' ...mandatory';
+    }
     return (
       <div>
         <Label error={error}>{label}</Label>
