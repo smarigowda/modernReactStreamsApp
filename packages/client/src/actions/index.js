@@ -1,6 +1,6 @@
 import streams from '../apis/streams';
 
-import { SIGN_IN, SIGN_OUT } from './types';
+import { SIGN_IN, SIGN_OUT, CREATE_STREAM } from './types';
 
 export const signIn = userId => {
     return {
@@ -17,5 +17,6 @@ export const signOut = () => {
 
 export const createStream = values => async dispatch => {
     console.log(`POST-ing to /streams with values = ${values}`);
-    streams.post('/streams', values);
+    const response = await streams.post('/streams', values);
+    dispatch({ type: CREATE_STREAM, payload: response.data });
 }
