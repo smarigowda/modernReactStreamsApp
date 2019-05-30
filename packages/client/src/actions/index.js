@@ -16,5 +16,6 @@ export const signOut = () => {
 }
 
 export const createStream = values => async dispatch => {
+    console.log(`POST-ing to /streams with values = ${values}`);
     streams.post('/streams', values);
 }

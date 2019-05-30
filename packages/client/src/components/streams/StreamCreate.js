@@ -1,10 +1,12 @@
 import React, { useCallback } from "react";
-
 import { Field, reduxForm } from "redux-form";
+import { connect } from 'react-redux';
+
 import { Input } from "../../styled/input";
 import { Form } from "../../styled/form";
 import { Label } from "../../styled/label";
 import { P } from "../../styled/p";
+import { createStream } from '../../actions'
 
 const Component = props => {
   console.log("props", props);
@@ -26,6 +28,7 @@ const Component = props => {
   const memoizedRenderInput = useCallback(renderInput, []);
   const onSubmit = values => {
     console.log("valuse", values);
+    props.createStream(values);
   };
   return (
     <Form onSubmit={props.handleSubmit(onSubmit)}>
@@ -55,9 +58,17 @@ const validate = values => {
   return errors;
 };
 
-const StreamCreate = reduxForm({
+const formWrapped = reduxForm({
   form: "streamCreate",
   validate
 })(Component);
 
-export { StreamCreate };
+const mapDispatchToProps = dispatch => {
+  return {
+    createStream: values => {
+      dispatch(createStream(values))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(formWrapped);

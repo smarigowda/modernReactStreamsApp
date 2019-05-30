@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const StreamDelete = () => {
+export default () => {
     return (
         <div>
             <h1>Stream Delete</h1>

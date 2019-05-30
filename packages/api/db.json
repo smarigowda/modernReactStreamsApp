@@ -1,5 +1,14 @@
 {
-    "streams": [
-        
-    ]
+  "streams": [
+    {
+      "title": "test",
+      "description": "test",
+      "id": 1
+    },
+    {
+      "title": "Title of my First Stream App",
+      "description": "This is my first streaming application...",
+      "id": 2
+    }
+  ]
 }
