@@ -63,14 +63,4 @@ const formWrapped = reduxForm({
   validate
 })(Component);
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     createStream: values => {
-//       dispatch(createStream(values))
-//     }
-//   }
-// }
-
-// export default connect(null, mapDispatchToProps)(formWrapped);
-
 export default connect(null, { createStream })(formWrapped);
