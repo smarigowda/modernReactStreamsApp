@@ -79,6 +79,11 @@
       "title": "test stream",
       "description": "Test programmatic navigation",
       "id": 16
+    },
+    {
+      "title": "test",
+      "description": "shorthand form of mapdispatch to props",
+      "id": 17
     }
   ]
 }
